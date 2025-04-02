@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="trip-card" id="trip-card">
+    <div class="trip-info">
+        <div class="trip-image">
+            <div class="price-tag" id="price-tag">₹5000.00 / person</div>
+            <div class="trip-details">
+                <span class="date-range" id="date-range">APR 25 - SEPT 25</span>
+                <div class="icons">
+                    <span class="icon">📅</span>
+                    <span id="trip-duration">3 days</span>
+                </div>
+                <div class="icons">
+                    <span class="icon">👤</span>
+                    <span id="trip-type">Office Tour</span>
+                </div>
+            </div>
+        </div>
+        <div class="change">
+            <h2 id="trip-title">Thailand Trip</h2>
+            <p class="all-inclusive"><strong>All inclusive:</strong> <br><span id="trip-includes">Dinner | Transport | Ticket</span></p>
+            <div class="stars" id="trip-rating">★★★★★</div>
+            <p class="p1"><strong>Visiting Places:</strong> <br><span id="trip-places">Sri Nager, Pagalam, Gulaman, Sonamob</span></p>
+            <p class="p2"><strong>Departures:</strong> <br><span id="trip-departures">Apr-2025, May-2025, Jun-2025, Jul-2025, Aug-2025, Sep-2025</span></p><br>
+        </div>
+       
+        <div class="buttons">
+            <button class="enquiry" id="enquiry-btn">Enquiry</button>
+            <button class="read-more" id="read-more-btn">Read More</button>
+        </div>
+    </div>
+</div>
+
+<!-- Enquiry Form (Hidden Initially) -->
+<div id="enquiry-form" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" id="close-btn">&times;</span>
+        <h2>Enquiry Form</h2>
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="email" id="email" placeholder="Your Email">
+        <button id="submit-enquiry">Submit</button>
+    </div>
+</div>
+
+<script>
+    // Sample trips data (can be replaced with API fetch)
+    const trips = [
+        {
+            title: "Thailand Trip",
+            price: "₹5000.00 / person",
+            dateRange: "APR 25 - SEPT 25",
+            duration: "3 days",
+            type: "Office Tour",
+            includes: "Dinner | Transport | Ticket",
+            rating: "★★★★★",
+            places: "Sri Nager, Pagalam, Gulaman, Sonamob",
+            departures: "Apr-2025, May-2025, Jun-2025, Jul-2025, Aug-2025, Sep-2025"
+        },
+        {
+            title: "Maldives Getaway",
+            price: "₹8000.00 / person",
+            dateRange: "MAY 10 - OCT 10",
+            duration: "5 days",
+            type: "Luxury Tour",
+            includes: "Flight | Hotel | Snorkeling",
+            rating: "★★★★☆",
+            places: "Male, Coral Reefs, Luxury Resorts",
+            departures: "May-2025, Jun-2025, Jul-2025, Aug-2025, Oct-2025"
+        }
+    ];
+
+    let currentTripIndex = 0;
+
+    function updateTripDetails() {
+        const trip = trips[currentTripIndex];
+        document.getElementById("trip-title").textContent = trip.title;
+        document.getElementById("price-tag").textContent = trip.price;
+        document.getElementById("date-range").textContent = trip.dateRange;
+        document.getElementById("trip-duration").textContent = trip.duration;
+        document.getElementById("trip-type").textContent = trip.type;
+        document.getElementById("trip-includes").textContent = trip.includes;
+        document.getElementById("trip-rating").textContent = trip.rating;
+        document.getElementById("trip-places").textContent = trip.places;
+        document.getElementById("trip-departures").textContent = trip.departures;
+    }
+
+    // Toggle between trips
+    document.getElementById("read-more-btn").addEventListener("click", function() {
+        currentTripIndex = (currentTripIndex + 1) % trips.length;
+        updateTripDetails();
+    });
+
+    // Enquiry form functionality
+    document.getElementById("enquiry-btn").addEventListener("click", function() {
+        document.getElementById("enquiry-form").style.display = "block";
+    });
+
+    document.getElementById("close-btn").addEventListener("click", function() {
+        document.getElementById("enquiry-form").style.display = "none";
+    });
+
+    document.getElementById("submit-enquiry").addEventListener("click", function() {
+        alert("Thank you for your enquiry! We will contact you soon.");
+        document.getElementById("enquiry-form").style.display = "none";
+    });
+
+    updateTripDetails();
+</script>
+
+</body>
+</html>
